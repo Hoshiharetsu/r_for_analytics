@@ -443,8 +443,7 @@ dice_roller(die_size = 20, number_of_rolls = 2)
 # OK, and what if we want to deal with weighted dice? 
 roll_weighted_d6 <- function(){
   die <- 1:6
-  dice <- sample(die, 1, prob = c(1/8,1/8,1/8,1/8,1/8,3/8))
-  sum(dice)
+  sample(die, 1, prob = c(1/8,1/8,1/8,1/8,1/8,3/8))
 }
 
 roll_weighted_d6()
