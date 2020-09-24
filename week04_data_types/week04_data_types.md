@@ -912,13 +912,13 @@ write.csv(pets_df, file="pets.csv", row.names=FALSE) # we don't usually want row
 
 Most of the data we want is somewhere out there, maybe in a .csv or something. We need to be able to pull that into R.
 
-In RStudio, you find the "Import Dataset" button under the "Environment" tab in the Environment Pane. A wizard will pop up.
+In RStudio, you can find the "Import Dataset" button under the "Environment" tab in the Environment Pane. A wizard will pop up. Consider whether you want your strings factored or not. (I generally uncheck that box.)
 
-Or you can use a text-based command (which is all we've got in Jupyter notebooks, anyway).
+Or you can use a text-based command (which is all we've got in Jupyter notebooks, anyway). 
 
 
 ```R
-bike_df = read.csv("avsurvey2019data.csv")
+bike_df = read.csv("avsurvey2019data.csv", stringsAsFactors=FALSE)
 head(bike_df)
 ```
 
@@ -941,22 +941,33 @@ head(bike_df)
 ```R
 # pulling out one column to mess with
 shared <- bike_df["SharedCyclist"]
+typeof(shared)
+
+# alternately
+shared <- bike_df$SharedCyclist
+typeof(shared)
+
 # and just printing a little of it
 head(shared)
 ```
 
 
-<table>
-<thead><tr><th scope=col>SharedCyclist</th></tr></thead>
-<tbody>
-	<tr><td>Yes</td></tr>
-	<tr><td>Yes</td></tr>
-	<tr><td>Yes</td></tr>
-	<tr><td>Yes</td></tr>
-	<tr><td>Yes</td></tr>
-	<tr><td>Yes</td></tr>
-</tbody>
-</table>
+'list'
+
+
+
+'character'
+
+
+
+<ol class=list-inline>
+	<li>'Yes'</li>
+	<li>'Yes'</li>
+	<li>'Yes'</li>
+	<li>'Yes'</li>
+	<li>'Yes'</li>
+	<li>'Yes'</li>
+</ol>
 
 
 
@@ -986,3 +997,26 @@ perc
 
 53.0817610062893
 
+
+
+```R
+# alternately... and probably more cleanly
+yesses <- length(which(shared == "Yes"))
+total <- length(shared)
+percentage <- yesses/total * 100
+percentage
+```
+
+
+53.0817610062893
+
+
+
+```R
+
+```
+
+
+```R
+
+```
